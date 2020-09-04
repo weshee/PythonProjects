@@ -1,0 +1,39 @@
+import random
+import string
+
+
+print("H A N G M A N")
+print("")
+word = ['python', 'java', 'kotlin', 'javascript']
+s = random.choice(word)
+m = 0  # for while loop
+build = []
+xxx = []
+lowercase = string.ascii_lowercase
+for i in range(len(s)):
+    build.append("-")
+while m < 8:
+    print("")
+    print("".join(build))
+    guess = input("Input a letter:")
+    if "-" not in build:
+        m = 8
+        print("".join(build))
+        print("You guessed the word!")
+        print("You survived!")
+    elif len(guess) != 1:
+        print("You should print a single letter")
+    elif guess not in lowercase:
+        print("It is not an ASCII lowercase letter")
+    elif guess in build or guess in xxx:
+        print("You already typed this letter")
+    elif guess in s:
+        for j in range(len(s)):
+            if s[j] == guess:
+                build[j] = s[j]
+    else:
+        print("No such letter in the word")
+        xxx.append(guess)
+        m += 1
+if "-" in build:
+    print('You are hanged!')
